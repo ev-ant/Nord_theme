@@ -1,0 +1,245 @@
+%\documentclass[aspectratio=1610]{beamer}
+\documentclass[aspectratio=169]{beamer}
+%\documentclass{beamer}
+
+
+\usetheme{nord}
+%\setbeamertemplate{background}{}
+%%------------------------------------------------------------------------
+%%    Specify here which title page to use (uncomment): 
+%%------------------------------------------------------------------------
+%% By default a presentation has a photo on title page
+%%
+% \settitlewhite   %Title page will be just white
+ \settitlecolor      % Title page will be in corporate colors gradient
+%%
+%%------------------------------------------------------------------------
+%%    Specify here which footline to use (uncomment): 
+%%------------------------------------------------------------------------
+%% By default there is "progress"-type footline that perform badly if there
+%%  are more than 40 slides
+%%
+% \simplefootline  % only date and page of total number of pages are shown
+% \nofootline      % pretty straightforward
+
+%  Color for quotes can be changed (for change - uncomment and/or modify the last parameter below)
+%
+%\colorlet{quotecolor}{nordgreendark}
+%%------------------------------------------------------------------------
+\title{A beautiful title can continue on the second line \\(using or not manual break)}
+\date[\today]{Position or date placeholder \today}
+\author[A.~Authorson]{Author Authorson}
+\institute{\href{http://www.google.com}{Email or other information}}
+%%----------------------------------------------------------------------
+
+\begin{document}
+
+<<include=FALSE>>=
+library(knitr)
+##
+##   The next row specifies default options for the code chunk applied for the whole document
+##  
+## If you uncomment opts_chunk, you'll get the next settings: 
+##    your code will be executed but not displayed in the text, 
+##    other additional output (messages, warning) will not be displayed in the text. 
+##    Comments will not have a preceding sign.
+##
+##  !!!  Use and modify wisely
+#opts_chunk$set(concordance=TRUE,echo = FALSE, message = FALSE, errors=TRUE, warning=FALSE, comment=NA)
+#knit_hooks$set(document = function(x) {sub('\\usepackage[]{color}', '\\usepackage[usenames,dvipsnames]{xcolor}', x, fixed = TRUE)})
+@
+
+\frame{\titlepage} 
+
+\frame{\frametitle{Table of contents}\tableofcontents} 
+
+%%---------------------------------------------
+%% uncomment if you have long list of contents
+%%
+%% NB. Do not forget to comment previous frame if so
+%% -------------------------------------------
+% \frame{\frametitle{Table of contents}
+% \begin{multicols*}{2}  % Change to 3 if it is needed
+% \tableofcontents
+% \end{multicols*}}
+%%------------------------------------------------------
+\begin{frame}{A new slide}
+A new slide is created with \texttt{frame}-environment - i.e. $\backslash begin\{frame\}\{\textit{<Slide title>}\}... \backslash end\{frame\}$.
+\vskip1cm
+Additionally, a simple way to define \texttt{frame}-environment exists:
+$\backslash frame\{\{\textit{<Slide title>}\}...\}$
+ 
+\end{frame}
+
+\section{Section 1} 
+\frame{\frametitle{Colors} 
+There are few colors in standard Nord University profile.\\ In this template they defined as:\\
+\begin{center}
+\color{nordblack}{\textbf{nordblack}}\\
+\color{nordmarine}{\textbf{nordmarine}}\\
+\color{nordblue}{\textbf{nordblue}}\\
+\color{nordbluedark}{\textbf{nordbluedark}}\\
+\color{nordgreen}{\textbf{nordgreen}}\\
+\color{nordgreendark}{\textbf{nordgreendark}}\\
+\color{nordgrey}{\textbf{nordgrey}}
+\end{center}
+
+And two contrast colors\\
+\begin{center}
+\color{nordred}{\textbf{nordred}}\\
+\color{nordgold}{\textbf{nordgold}}
+\end{center}
+}
+
+\subsection{Subsection no.1.1  }
+\frame{ 
+Slides could be without titles.\\
+If you prefer to skip title, you should make it empty or omit \texttt{frametitle}
+\vskip1.5cm
+\begin{barquote}{Wise Guy}
+As you see here, a nice formatting of quotes is done already. 
+\end{barquote}}
+
+
+\section{Section no. 2} 
+\subsection{Lists I}
+\frame{\frametitle{Shapes}
+There are three supporting shapes in Nord University profile, which gain realisation through the unnumbered list structure:
+\begin{outline}
+ \1 blue circle
+   \2 green triangle
+     \3 grey square
+ \0 A creation of the list therefore can be done via \texttt{outline{}/outline[enumerate]}- and \texttt{itemize/enumerate} environment.\\
+However, \texttt{outline} option could be preferred, since it does not require inserting of nested environment (as \texttt{itemize} does).\\
+\0 \textbf{This list is done with \texttt{outline}-environment. An item of level 0 produces normal text within the list.}
+ \1 few other items in list are added
+ \1 just to grow list structure
+	\2 even in depth
+\end{outline}
+}
+
+\subsection{Lists II}
+\frame{\frametitle{Numbered lists}
+
+There is a place for improvement, since
+\begin{outline}[enumerate]
+ \1 numbers are barely visible inside balls
+ \1
+     
+ \1 but it is possible to use it even as it is.
+ 
+\end{outline}
+}
+
+\section{Section no.3} 
+\subsection{Tables}
+\frame{\frametitle{Tables with pause}
+Tables with pause create an illusion of simple animation.
+\uncover<4->{{\color{nordgreen}{\\ It is also possible to organize slide in columns,\\ And additionally to specify order of uncovering of material}}}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{tabular}{c| K{2cm} |c|}
+\hline
+A & B & C \\ \hline
+\pause 
+1 & 2 & 3 \\  \hline
+\pause 
+A & B & C \\ \hline
+\end{tabular} 
+\column{0.5\textwidth}
+\begin{table}
+\uncover<5->{\caption{Random data}}
+\begin{tabular}{c c c}
+\uncover<5->{\textbf{Name} & \textit{Subject} & \textbf{Grade} \\ }
+\uncover<7->{Frank & Chemistry & B \\ } 
+\uncover<6->{Peter & Physics & A \\ }
+\end{tabular} 
+\end{table}
+
+\end{columns}
+
+\uncover<8->{\alert{NB:} table with \texttt{tabular}-environment is flashed left, while table with \texttt{table}-environment is centred.\\
+If $\{K\{2cm\}\}$ is used, it creates column of width 2cm with center alignment of content.
+}
+}
+
+\section{Section no. 4}
+\subsection{Blocs}
+\frame{\frametitle{Blocs}
+Blocks are nice thing to use for highlighting. There are 3 \texttt{beamer}-class types of blocks
+\begin{block}{Block (yes, that simple)}
+text to show inside the block
+\end{block}
+
+\begin{exampleblock}{Exampleblock}
+text to show inside the block
+\begin{itemize}
+\item could be organized in lists
+\centering
+\item and centred if it is needed
+\end{itemize}
+\end{exampleblock}
+
+
+\begin{alertblock}{\centering Alertblock}
+Even block name could be centered.
+
+Let's introduce formula here:
+$$\int_0^\infty e^{-x^2} dx=\frac{\sqrt{\pi}}{2}$$
+\end{alertblock}
+}
+
+
+\subsection{Unusual content}
+
+\frame{{Minimal example with inserted \textbf{R} code}
+
+
+Here is a chunk  of \textbf{R} code without extra options about code displaying.
+
+Labels for figures are generated automatically if option \texttt{fig.cap} is added: with prefix \texttt{fig:}  and name of the chunk given on the first place, so you can refer to it if needed, using $\backslash autoref\{fig:\mathit{'chunkname'}\}$.
+
+
+\begin{multicols*}{2}
+{\small
+<<'polygon', fig.height=2.5, fig.width=4, fig.cap="Adding code-generated plot",tidy=TRUE>>=
+set.seed(215)
+
+x <- seq(-3, 3, length = 500)
+
+y <- dnorm(x)
+
+par(mar = c(2,2,.1,0))
+
+plot(x, y, type = "l", xlab='') 
+
+abline(h = 0)
+
+step <- seq(-1, 0.5, 0.25)
+
+for (i in 2:length(step)){
+  
+  polygon(step[c(i-1,i-1,i,i)], 
+          
+          c(0, min(dnorm(step[c(i,i-1)])), 
+            
+          min(dnorm(step[c(i,i-1)])), 0),
+          
+          col = 'darkcyan')
+  }
+
+@
+}
+\end{multicols*}
+}
+
+
+\begin{colorframe}
+For \emph{"Thank you"} slide (or slide with only picture), you can use \texttt{colorframe}-environment.
+\\
+It sets gradient background, removes frame titles and logos, and sets color of text to white.
+\vskip1cm
+Basic insights about how to organize presentation in\texttt{beamer}-class can be found \href{http://web.mit.edu/rsi/www/pdfs/beamer-tutorial.pdf}{here}.
+\end{colorframe}
+
+\end{document}

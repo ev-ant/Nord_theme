@@ -1,0 +1,501 @@
+\mode<presentation>
+
+% Requirement
+
+\RequirePackage{tikz,array,hyperref, multicol,framed,outlines, mathtools}
+\RequirePackage[absolute,overlay]{textpos}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\newlength{\mwd}
+\setlength{\mwd}{\dimexpr\paperheight-1cm\relax}
+
+\showboxdepth=5
+\showboxbreadth=5
+
+\tikzset{vertical custom shading/.code={%
+ \pgfmathsetmacro\tikz@vcs@middle{#1}
+ \pgfmathsetmacro\tikz@vcs@bottom{\tikz@vcs@middle/2}
+ \pgfmathsetmacro\tikz@vcs@top{(100-\tikz@vcs@middle)/2+\tikz@vcs@middle}
+\pgfdeclareverticalshading[tikz@axis@top,tikz@axis@middle,tikz@axis@bottom]{newaxis}{100bp}{%
+  color(0bp)=(tikz@axis@bottom);
+  color(\tikz@vcs@bottom bp)=(tikz@axis@bottom);
+  color(\tikz@vcs@middle bp)=(tikz@axis@middle);
+  color(\tikz@vcs@top bp)=(tikz@axis@top);
+  color(100bp)=(tikz@axis@top)}
+  \pgfkeysalso{/tikz/shading=newaxis}
+  }
+}
+
+%------------------------------------------------------------------------------------
+%                                    Used images
+%------------------------------------------------------------------------------------
+
+\pgfdeclareimage[interpolate=true,height=\paperheight]{titlebg}{images/picground}
+%\pgfdeclareimage[interpolate=true, width=3.2cm]{logo}{images/logo}
+%\pgfdeclareimage[interpolate=true, width=1.7cm]{logomini}{images/nordlogoen}
+\pgfdeclareimage[interpolate=true, width=3.5cm]{logo}{images/logo_NORD}
+\pgfdeclareimage[interpolate=true, width=2cm]{logomini}{images/logo_NORD}
+
+%\useinnertheme{nord}
+%------------------------------------------------------------------------------------
+%                                    Inner theme specification
+%------------------------------------------------------------------------------------
+
+% Title page
+\defbeamertemplate*{title page}{nord}
+ {\par
+ \begin{textblock*}{3.5cm}(0.5cm,\dimexpr\paperheight-2.55cm\relax)
+	    \begin{beamercolorbox}[wd=3.5cm]{logo}
+	        \pgfuseimage{logo}\par
+	     \end{beamercolorbox}%
+	    \end{textblock*} 
+ 
+ \begin{textblock*}{\dimexpr\paperwidth-1cm\relax}(0.5cm,\dimexpr\paperheight-3.8cm\relax)
+	    \begin{beamercolorbox}[wd=\dimexpr\paperwidth-1cm\relax]{title page header}
+	        \usebeamerfont{title}\usebeamercolor{title}\inserttitle
+	     \end{beamercolorbox}%
+	    \end{textblock*}
+     
+    \begin{textblock*}{\dimexpr\paperwidth-6.5cm\relax}(4.2cm,\dimexpr\paperheight-2cm\relax)
+		\begin{beamercolorbox}{date}
+	      \usebeamercolor{date}\usebeamerfont{date}\insertdate\par
+	     \usebeamercolor{date}\usebeamerfont{author}\insertinstitute\par
+	    \end{beamercolorbox}
+    \end{textblock*}
+    
+    \begin{textblock*}{\dimexpr\paperwidth-4.5cm\relax}(4.2cm,\dimexpr\paperheight-2.5cm\relax)
+	    \begin{beamercolorbox}{author}
+	      \usebeamerfont{author}\insertauthor\par%
+    	\end{beamercolorbox}
+    \end{textblock*}
+ 
+    \begin{textblock*}{2.6cm}(\dimexpr\paperwidth-2.7cm\relax,\dimexpr\paperheight-1.6cm\relax)
+	    \begin{beamercolorbox}[right]{nordsite}
+	      \color{nordblack!50!nordgrey}\href{http://www.nord.no}{\textbf{www.nord.no}}\par%
+    	\end{beamercolorbox}
+    \end{textblock*}
+   
+   \begin{beamercolorbox}[wd=\paperwidth,ht=\dimexpr\paperheight-1.5cm\relax]{slidetitle} 
+ \begin{tikzpicture}
+ \useasboundingbox[fill=nordwhite](0,10) rectangle(\the\paperwidth,13);
+  \draw[nordshade, thick] (0,11.5) to (\the\paperwidth,11.5);
+ \end{tikzpicture}
+ \end{beamercolorbox} 
+}
+\defbeamertemplate*{title page}{gradient}
+ { \par\begin{textblock*}{3.6cm}(0.4cm,\dimexpr\paperheight-4.3cm\relax)
+	    \begin{beamercolorbox}[wd=3.6cm]{logo}
+	        \pgfuseimage{logo}\par
+	     \end{beamercolorbox}%
+	    \end{textblock*}
+ 
+ \begin{textblock*}{\dimexpr\paperwidth-1cm\relax}(0.5cm,\dimexpr\paperheight-5.6cm\relax)
+	    \begin{beamercolorbox}[wd=\dimexpr\paperwidth-1cm\relax]{title page header}
+	        \usebeamerfont{title}\usebeamercolor{title}\inserttitle\par
+	     \end{beamercolorbox}%
+	    \end{textblock*}
+     
+    \begin{textblock*}{\dimexpr\paperwidth-4.5cm\relax}(4.3cm,\dimexpr\paperheight-3.7cm\relax)
+		\begin{beamercolorbox}{date}
+	      \usebeamercolor{date}\usebeamerfont{date}\insertdate\par
+	     \usebeamercolor{date}\usebeamerfont{author}\insertinstitute\par
+	    \end{beamercolorbox}
+    \end{textblock*}
+    
+    \begin{textblock*}{\dimexpr\paperwidth-4.5cm\relax}(4.3cm,\dimexpr\paperheight-4.2cm\relax)
+	    \begin{beamercolorbox}{author}
+	     \usebeamercolor{author}\usebeamerfont{author}\insertauthor\par
+	       	\end{beamercolorbox}
+    \end{textblock*}
+    
+    \begin{textblock*}{2.6cm}(\dimexpr\paperwidth-2.7cm\relax,\dimexpr\paperheight-3.3cm\relax)
+	    \begin{beamercolorbox}[wd=2.6cm,right]{nordsite}
+	      \small\color{nordblack!50!nordgrey}\href{http://www.nord.no}{\textbf{www.nord.no}}\par%
+    	\end{beamercolorbox}
+    \end{textblock*}
+   
+   \begin{beamercolorbox}[wd=\paperwidth,ht=\dimexpr\paperheight-4.5cm\relax]{slidetitle} 
+ \begin{tikzpicture}
+ \useasboundingbox[fill=nordwhite](0,9.5) rectangle(\the\paperwidth,6.5);
+  \draw[nordshade, thick] (0,8) to (\the\paperwidth,8);
+ \end{tikzpicture}
+ \end{beamercolorbox} 
+}
+
+
+%\useoutertheme{nord}
+%------------------------------------------------------------------------------------
+%                                    Outer theme specification
+%------------------------------------------------------------------------------------
+\defbeamertemplate*{background canvas}{nord}{
+\ifnum\thepage=1\relax%
+ {\begin{tikzpicture}
+  {\useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight); 
+ \pgfuseimage{titlebg};}
+  \end{tikzpicture}}  
+  \fi
+  }
+
+\defbeamertemplate*{background canvas}{plainwhite}{}
+
+\defbeamertemplate*{background canvas}{gradient}{
+ \ifnum\thepage=1\relax%
+ {\begin{tikzpicture}
+   \draw[top color=nordblack,bottom color=nordgreen,middle color=nordgrey,
+      vertical custom shading=35] (0,0) rectangle (\the\paperwidth,\the\paperheight);
+  \end{tikzpicture}}  
+  \fi
+  }
+
+
+\setbeamertemplate{background}{
+ \ifnum\thepage>1\relax
+{\begin{tikzpicture}
+ {\draw[white] (0,0) rectangle (\the\paperwidth,\the\paperheight);
+  \draw[nordwhite, thick] (0,\the\mwd) to (\the\paperwidth,\the\mwd);}
+ \end{tikzpicture}}
+ \fi
+  }
+
+% Frame title
+\defbeamertemplate*{frametitle}{nord}
+% 
+{\vskip0.8cm\par
+  \ifx\insertsection\@empty%
+        {\ifx\insertframetitle\@empty% 
+              \par
+         \else
+         {\begin{textblock*}{\dimexpr\paperwidth-5.2cm\relax}(2.7cm,0.05cm)
+              \begin{beamercolorbox}[wd=\dimexpr\paperwidth-5cm\relax]{header}
+                  {\vskip0.3cm\usebeamerfont{frametitle}\insertframetitle}\par
+              \end{beamercolorbox}
+          \end{textblock*}}
+         \fi}
+   \else%
+         {\ifx\insertframetitle\@empty% 
+               {\begin{textblock*}{\dimexpr\paperwidth-5.2cm\relax}(2.7cm,0.05cm)
+                    \begin{beamercolorbox}[wd=\dimexpr\paperwidth-5cm\relax]{header}
+                        \vskip0.3cm\usebeamerfont{framesubtitle}\insertsection\par
+                    \end{beamercolorbox}
+                \end{textblock*}}
+     	    \else
+     	       {\begin{textblock*}{\dimexpr\paperwidth-5.2cm\relax}(2.7cm,0.05cm)
+     	            \begin{beamercolorbox}[wd=\dimexpr\paperwidth-5cm\relax]{header}
+     	              {\par\vskip-0.8ex \color{nordmarine!50}\usebeamerfont{framesubtitle}\insertsection\par}%
+     	              {\usebeamerfont{frametitle}\insertframetitle\par}
+     	            \end{beamercolorbox}
+     	        \end{textblock*}}%
+           \fi}
+    \fi
+      {\par
+      \begin{textblock*}{3cm}(\dimexpr\paperwidth-3.2cm\relax,0.8ex)
+	    \begin{beamercolorbox}[wd=3cm,right]{authorslide}
+	        {\usebeamerfont{date}\color{nordgrey}{\small\insertshortauthor}\par}
+	        {\usebeamerfont{author}\color{nordblack!50!nordgrey}{\footnotesize{www.nord.no}}\par}%
+	    \end{beamercolorbox}%
+	    \end{textblock*}
+	    
+	    \begin{textblock*}{2cm}(0.5cm,0.2cm)
+	    \begin{beamercolorbox}[wd=2cm]{logo}
+	        \pgfuseimage{logomini}\par
+	     \end{beamercolorbox}%
+	    \end{textblock*}
+	    }
+}
+
+\defbeamertemplate{footline right}{number}{%
+  \Acrobatmenu{GoToPage}{\insertframenumber{}/\inserttotalframenumber}%
+}
+
+\newcommand{\my@bigsize}{9}
+\newcommand{\my@medsize}{7}
+\newcommand{\my@smallsize}{5}
+\let\my@box@size=\my@bigsize
+
+\newlength{\my@tempsize}
+
+\newcounter{my@sectnum}
+
+\newcommand{\my@lastdigit}[1]{%
+  \loop\ifnum\value{#1}>9\addtocounter{#1}{-10}\repeat
+  \arabic{#1}%
+}
+
+\newcommand\my@fixedbox[2]{%
+  \makebox[#1]{\rule[-1ex]{0pt}{3.25ex}#2}%
+}
+
+\newcommand\my@colorbox[3]{%
+  {\setlength{\fboxsep}{0pt}\colorbox{#1}{\my@fixedbox{#2}{#3}}}%
+}
+
+\newcommand{\my@navbox}[1][]{%
+  % see http://tex.stackexchange.com/a/53091/8956
+  \if\relax\detokenize{#1}\relax
+    \def\my@tempbox{\my@fixedbox}%
+  \else
+    \def\my@tempbox{\my@colorbox{#1}}%
+  \fi
+  \ifx\my@box\my@bigbox
+    \def\my@temptext{\my@lastdigit{my@sectnum}}%
+  \fi
+  \ifx\my@box\my@medbox
+    \def\my@temptext{$\diamond$}%
+  \fi
+  \ifx\my@box\my@smallbox
+    \def\my@temptext{$-$}%
+  \fi
+  \my@tempbox{\my@tempsize}{\my@temptext}%
+}
+
+\defbeamertemplate{navigation box}{home}{%
+  \setlength{\my@tempsize}{\my@box@size pt}%
+  \my@colorbox{filler2}{\my@tempsize}{$\equiv$}%
+}
+
+\defbeamertemplate{navigation box}{done}{%
+  \setlength{\my@tempsize}{\my@box@size pt}%
+  \my@navbox[filler2]%
+}
+
+\defbeamertemplate{navigation box}{todo}{%
+  \setlength{\my@tempsize}{\my@box@size pt}%
+  \my@navbox
+}
+
+\newcommand{\my@bigbox}{\global\let\my@box@size=\my@bigsize\usebeamertemplate{navigation box}}
+\newcommand{\my@medbox}{\global\let\my@box@size=\my@medsize\usebeamertemplate{navigation box}}
+\newcommand{\my@smallbox}{\global\let\my@box@size=\my@smallsize\usebeamertemplate{navigation box}}
+\let\my@medbox@orig=\my@medbox
+\let\my@smallbox@orig=\my@smallbox
+\let\my@box=\my@bigbox
+
+\newcounter{my@subsectionnumber}
+\newcounter{my@normalframenumber}
+
+\AtBeginDocument{%
+   \pretocmd{\subsection}{\refstepcounter{my@subsectionnumber}}{}{}%
+   \patchcmd{\beamer@writeslidentry}{\addtocontents}{\stepcounter{my@normalframenumber}\addtocontents}{}{}%
+}
+
+\AtEndDocument{%
+   \immediate\write\@auxout{%
+     \noexpand\gdef\noexpand\my@totalsectionnumber{\the\c@section}%
+     \noexpand\gdef\noexpand\my@totalsubsectionnumber{\the\c@my@subsectionnumber}%
+     \noexpand\gdef\noexpand\my@normalframenumber{\the\c@my@normalframenumber}%
+   }%
+}
+
+\def\my@totalsectionnumber{0}
+\def\my@totalsubsectionnumber{0}
+\def\my@normalframenumber{50} % use it instead of \inserttotalframenumber
+
+\newlength{\my@progress@width}
+\setlength{\my@progress@width}{\dimexpr0.8\paperwidth-\beamer@leftmargin\relax}
+
+\newlength{\my@slidebox@width}
+
+\def\my@scale@subsection{1}
+\def\my@scale@slide{1}
+
+\newcommand{\my@adjustbox}{%
+  \ifnum\my@normalframenumber>80\relax
+    \gdef\my@scale@subsection{0.7}%
+  \else
+  \ifnum\my@normalframenumber>45\relax
+    \gdef\my@scale@subsection{0.9}%
+  \fi\fi
+  \pgfmathsetlength{\my@slidebox@width}{%
+    (\my@progress@width - 2pt - 1pt*\my@bigsize*(\my@totalsectionnumber+1)%
+        - 1pt*\my@medsize*\my@scale@subsection*\my@totalsubsectionnumber) / %
+    max(1,\my@normalframenumber-\my@totalsectionnumber-\my@totalsubsectionnumber-1)%
+  }%
+  \pgfmathsetlength{\my@slidebox@width}{%
+     min(\my@slidebox@width,1pt*\my@smallsize)%
+  }%
+  \gdef\my@scale@slide{\strip@pt\dimexpr
+    \my@slidebox@width/\my@smallsize
+  \relax}%
+  \renewcommand{\my@medbox}{\scalebox{\my@scale@subsection}[1]{\my@medbox@orig}}%
+  \renewcommand{\my@smallbox}{\scalebox{\my@scale@slide}[1]{\my@smallbox@orig}}%
+  % only adjust boxes once
+  \let\my@adjustbox=\relax
+}
+
+\renewcommand{\sectionentry}[5]{\global\let\my@box=\my@bigbox\setcounter{my@sectnum}{#1}}
+
+\pretocmd{\beamer@setuplinks}{\renewcommand{\beamer@subsectionentry}[5]{}}{}{}
+\apptocmd{\beamer@setuplinks}{\global\let\beamer@subsectionentry\mybeamer@subsectionentry}{}{}
+
+\newcommand{\mybeamer@subsectionentry}[5]{\global\let\my@box=\my@medbox}
+
+\renewcommand{\slideentry}[6]{%
+  \def\my@temp@i{1/1}%
+  \def\my@temp@ii{#4}%
+  \ifx\my@temp@i\my@temp@ii % title page
+    \setbeamertemplate{navigation box}[home]%
+  \else
+    \setbeamertemplate{navigation box}[done]%
+  \fi
+  \ifnum\c@section<#1%
+    \setbeamertemplate{navigation box}[todo]%
+  \else
+    \ifnum\c@section=#1\ifnum\c@subsection<#2%
+      \setbeamertemplate{navigation box}[todo]%
+    \else
+      \ifnum\c@subsection=#2\ifnum\c@subsectionslide<#3%
+        \setbeamertemplate{navigation box}[todo]%
+      \fi\fi
+    \fi\fi
+  \fi
+  \ifx\my@temp@i\my@temp@ii % title page
+    \beamer@link(#4){\my@bigbox}%
+  \else
+    \beamer@link(#4){\my@box}%
+  \fi
+  \global\let\my@box=\my@smallbox
+}
+\defbeamertemplate{footline}{datepages}{%
+  % default height is 0.4pt, which is ignored by adobe reader, so we increase it by 0.2pt
+  {\usebeamercolor[fg]{separator line}\hrule height 0.6pt}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex]{footline}%
+    \usebeamerfont{footline}%
+    \kern\beamer@leftmargin
+\insertshortdate    \hfill\usebeamertemplate{footline right}%
+    \kern\beamer@rightmargin
+  \end{beamercolorbox}%
+}
+
+\defbeamertemplate{footline}{progress}{%
+  % default height is 0.4pt, which is ignored by adobe reader, so we increase it by 0.2pt
+  {\usebeamercolor[fg]{separator line}\hrule height 0.6pt}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex]{footline}%
+    \usebeamerfont{footline}%
+    \kern\beamer@leftmargin
+\insertshortdate \hskip1cm
+    \my@adjustbox\dohead%
+    \hfill\usebeamertemplate{footline right}%
+    \kern\beamer@rightmargin
+  \end{beamercolorbox}%
+}
+
+%------------------------------------------------------------------------------------------------------------
+%\usecolortheme{nord}
+%------------------------------------------------------------------------------------
+%                                    Color specification
+%------------------------------------------------------------------------------------
+\definecolor{nordgreendark}{RGB}{0, 112, 65} 
+\definecolor{nordgreen}{RGB}{108, 194, 74} 
+\definecolor{nordblack}{RGB}{0, 61, 76} 
+\definecolor{nordbluedark}{RGB}{22, 92, 125} 
+\definecolor{nordblue}{RGB}{0, 159, 223}
+\definecolor{nordmarine}{RGB}{17, 94, 103}
+\definecolor{nordgrey}{RGB}{148, 183, 187}
+\definecolor{nordred}{RGB}{255, 88, 93}
+\definecolor{nordgold}{RGB}{255, 163, 0}
+\definecolor{nordwhite}{RGB}{242,242,242}
+\definecolor{nordshade}{RGB}{178, 178, 178}
+\colorlet{filler2}{nordmarine!40!white}
+\colorlet{quotecolor}{nordblue}
+\colorlet{normaltext}{nordblack!30!black}
+
+
+\setbeamercolor*{frametitle}{fg=nordmarine}
+\setbeamercolor*{framesubtitle}{fg=nordbluedark}
+% Settings
+\setbeamercolor*{title page header}{fg=nordmarine}
+\setbeamercolor*{author}{fg=nordbluedark}
+\setbeamercolor*{date}{fg=nordgrey}
+\setbeamercolor*{institute}{fg=filler2}
+
+\setbeamercolor*{normal text}{fg=normaltext}
+\setbeamercolor*{local structure}{fg=nordgreendark}
+\setbeamercolor*{alerted text}{fg=nordred}
+\setbeamercolor*{structure}{fg=normaltext}
+\setbeamercolor*{example text}{fg=nordgreen}
+\setbeamercolor*{enumerate items}{bg=nordgreen, fg=nordgold}
+\setbeamercolor*{itemize item}{fg=nordblue}
+\setbeamercolor*{itemize subitem}{fg=nordgreen}
+\setbeamercolor*{itemize subsubitem}{fg=nordgrey}
+\setbeamercolor*{block title}{bg=nordgold!70!yellow!30,fg=nordblue}
+\setbeamercolor*{block title example}{bg=nordgold!70!yellow!30,fg=nordgreen}
+\setbeamercolor*{block title alerted}{bg=nordgold!70!yellow!30,fg=nordred}
+\hypersetup{linkcolor=nordgreendark}
+%\usefonttheme{nord}
+%------------------------------------------------------------------------------------
+%                                    Font specification
+%------------------------------------------------------------------------------------
+\setbeamerfont{projected text}{size=\normalsize}
+\setbeamerfont{title}{series=\bfseries, shape=\slshape, size=\Large}
+\setbeamerfont{author}{series=\bfseries, size=\large}
+\setbeamerfont{date}{shape=\slshape, size=\large}
+\setbeamerfont{institute}{shape=\slshape, series=\mdseries, size=\small}
+\setbeamerfont{quote}{shape=\slshape}
+
+\setbeamerfont{frametitle}{series=\bfseries, size=\normalsize}
+\setbeamerfont{framesubtitle}{shape=\slshape, size=\small}
+\setbeamerfont{enumerate items}{series=\bfseries}
+
+\setbeamerfont{block title}{series=\bfseries}
+\setbeamerfont{block title example}{series=\bfseries}
+\setbeamerfont{block title alerted}{series=\bfseries}
+
+%--------------------------------------------------------------------------------
+\newenvironment{barquote}[1]%
+{\ifblank{#1}
+   {\def\quoteauthor{}}
+   {\def\quoteauthor{\par\hfill{\color{quotecolor}\emph{#1}}}}
+\def\FrameCommand
+    {%
+        {\color{quotecolor}\vrule width 3pt}%
+        \hspace{0pt}%must no space.
+        \fboxsep=\FrameSep\colorbox{quotecolor!5}%
+    }%
+    \MakeFramed{\hsize0.8\paperwidth\advance\hsize-\width\FrameRestore}
+    \indent\usebeamerfont{quote}}
+{\hfill\quoteauthor \endMakeFramed\color{normaltext}}
+
+
+% Settings
+
+\setbeamertemplate{footline}[progress]
+\setbeamertemplate{footline right}[number]
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded][shadow=true]  
+\setbeamertemplate{enumerate items}[square]
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[triangle]
+\setbeamertemplate{itemize subsubitem}[square]
+\setbeamertemplate{title page}[nord]
+\setbeamertemplate{background canvas}[nord]
+\setbeamertemplate{frametitle}[nord]
+
+\newcolumntype{K}[1]{>{\centering\arraybackslash}p{#1}}
+\renewcommand\textbullet{\ensuremath{\bullet}}
+
+\newcommand{\settitlewhite}{
+  \setbeamertemplate{background canvas}[plainwhite] 
+  \setbeamertemplate{title page}[gradient]}
+
+\newcommand{\settitlecolor}{
+  \setbeamertemplate{background canvas}[gradient] 
+  \setbeamertemplate{title page}[gradient]}
+  
+\newcommand{\simplefootline}{
+\setbeamertemplate{footline}[datepages]}
+
+\newcommand{\nofootline}{
+  \setbeamertemplate{footline}[default]}
+
+\newenvironment{colorframe}%
+{%
+\setbeamertemplate{background}{
+{\begin{tikzpicture}
+   \draw[top color=nordblack,bottom color=nordgreen,middle color=nordgrey,
+      vertical custom shading=35] (0,0) rectangle (\the\paperwidth,\the\paperheight);
+  \end{tikzpicture}}}  
+  \setbeamertemplate{frametitle}{}
+  \begin{frame}
+  \color{nordwhite}}
+{\end{frame}}
+\mode<all>

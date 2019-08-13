@@ -1,0 +1,85 @@
+---
+title: "Your fancy title"
+author: "Author Authorson"
+institute: "email or something else"
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
+output:
+  beamer_presentation: 
+    keep_tex: true
+    theme: nord
+aspectratio: 169
+---
+
+```{r setup, include=FALSE, eval=TRUE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Something extra
+
+There is a room for minor customization through `header-includes`:
+
+   - titlepage:
+ 
+      * By default a presentation has a photo on title page
+      
+          `\settitlewhite`     -  The title page will be just white
+          `\settitlecolor`     -  The title page will be in corporate colors gradient
+ 
+   - footer:
+    
+     * By default there is "progress"-type footline that perform badly if there  are more than 40 slides
+    
+       `\simplefootline`  - only date and page of total number of pages are shown
+        `\nofootline`     - pretty straightforward
+
+## Colors
+
+There are few colors in standard Nord University profile.
+
+In this template they defined as:
+
+\begin{center}
+\color{nordblack}{\textbf{nordblack}}\\
+\color{nordmarine}{\textbf{nordmarine}}\\
+\color{nordblue}{\textbf{nordblue}}\\
+\color{nordbluedark}{\textbf{nordbluedark}}\\
+\color{nordgreen}{\textbf{nordgreen}}\\
+\color{nordgreendark}{\textbf{nordgreendark}}\\
+\color{nordgrey}{\textbf{nordgrey}}
+\end{center}
+
+And two contrast colors
+
+\begin{center}
+\color{nordred}{\textbf{nordred}}\\
+\color{nordgold}{\textbf{nordgold}}
+\end{center}
+
+
+## Extra environments
+
+\begin{block}{Block (yes, that simple)}
+text to show inside the block
+\end{block}
+
+\begin{exampleblock}{Exampleblock}
+text to show inside the block
+\begin{itemize}
+\item could be organized in lists
+\centering
+\item and centred if it is needed
+\end{itemize}
+\end{exampleblock}
+
+
+\begin{alertblock}{\centering Alertblock}
+Even block name could be centered.
+
+Let's introduce formula here:
+$$\int_0^\infty e^{-x^2} dx=\frac{\sqrt{\pi}}{2}$$
+\end{alertblock}
+
+## Works better with pure LaTeX
+
+- `\section{}`
+- `\begin{colorframe} ... \end{colorframe}` 

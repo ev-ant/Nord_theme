@@ -5,7 +5,6 @@ institute: "email or something else"
 date: "`r format(Sys.Date(), '%d-%m-%Y')`"
 output:
   beamer_presentation: 
-    keep_tex: true
     theme: nord
 aspectratio: 169
 ---

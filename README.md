@@ -11,7 +11,7 @@ It is based on corporate colors, shapes and includes university's logo and title
 
 You need to download (at least) two files:
 
-- `beamerthemenord.sty` or `nord.sty`
+- `beamerthemenord.sty`
 - *images* folder.
 
 ### If you have installed LaTeX
@@ -30,23 +30,21 @@ Now you ready to use the custom theme in any newly created `beamer`-presentation
 
 ### If you prefer to use online-editor:
 
-Be sure, that all presentation is created in the folder, which contains downloaded files.
+Be sure, that all presentations are created in the folder, which contains downloaded files.
 
 ## To use
 
 If you want to use this theme, in the preamble of the `beamer`-presentation add
 
-`\usepackage{nord}` (if you download file `nord.sty`)
-
-or
-
-`\usetheme{nord}`  (if you download file `beamerthemenord.sty`)
+`\usetheme{nord}` 
 
 after `\documentclass{beamer}`.
 
 Alternatively, you can copy `template.tex` file and modify it according to your needs.
 
 Some basic guidance how to create presentation, using this theme is given in `template.tex`
+
+If you want to use it for the Rmarkdown, specify `beamer_presentation` output with `theme: nord`
 
 ## Sources
 
